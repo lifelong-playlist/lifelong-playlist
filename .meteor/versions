@@ -59,12 +59,9 @@ minifiers@1.1.7
 minimongo@1.0.10
 mongo@1.1.2
 mongo-id@1.0.1
-mrt:soundcloud@0.1.1
 npm-bcrypt@0.7.8_2
 npm-container@1.2.0
 npm-mongo@1.4.39_1
-oauth@1.1.6
-oauth2@1.1.5
 observe-sequence@1.0.7
 ordered-dict@1.0.4
 promise@0.5.0
