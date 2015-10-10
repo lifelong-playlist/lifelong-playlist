@@ -10,7 +10,6 @@ check
 audit-argument-checks
 themeteorchef:jquery-validation
 twbs:bootstrap
-browser-policy
 meteorhacks:npm
 
 
@@ -36,3 +35,4 @@ aldeed:collection2
 tracker
 service-configuration
 mrt:accounts-soundcloud
+meteortoys:allthings
