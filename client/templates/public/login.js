@@ -3,5 +3,6 @@ Template.login.onRendered( () => {
 });
 
 Template.login.events({
-  'submit form': ( event ) => event.preventDefault()
+  'submit form': ( event ) => event.preventDefault(),
+    'click #connect-with-soundcloud': event => Meteor.loginWithSoundcloud()
 });
