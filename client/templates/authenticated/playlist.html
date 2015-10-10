@@ -1,0 +1,27 @@
+<template name="playlist">
+
+  <div class="row">
+    <div class='col-md-12'>
+
+        {{#with getPlayList}}
+          <h3>{{ name }}</h3>
+          <p>{{ description }}</p>
+        {{/with}}
+      
+    </div>
+
+  <div class="col-md-6">
+    <form>
+      <div class="form-group">
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Search for...">
+          <span class="input-group-btn">
+            <button class="btn btn-default" type="button">Search</button>
+          </span>
+        </div><!-- /input-group -->
+      </div>
+    </form>
+
+  </div><!-- /.col-lg-6 -->
+</div><!-- /.row -->
+</template>

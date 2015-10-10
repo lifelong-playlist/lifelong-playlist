@@ -1,0 +1,32 @@
+<template name="new_playlist">
+  <div class="row">
+    <div class="col-md-6">
+      <form>
+        <div class="form-group">
+          <label for="exampleInputEmail1">Playlist name:</label>
+          <input type="text" class="form-control" id="txtName" placeholder="My Awesome Playlist" required="">
+        </div>
+        <div class="form-group">
+          <label for="exampleInputPassword1">Description</label>
+          <textarea class="form-control" rows="5" id="txtDescription"></textarea>
+        </div>
+
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" id="chkDefault"> Make this one My Default Playlist
+          </label>
+        </div>
+        <button type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-ok"></i> Create Playlist</button>
+      </form>
+    </div>
+    <div class="col-md-6">
+      <h3>My Playlists</h3>
+      <ul>
+        {{#each playlists}}
+        <li><a href="/playlist/{{_id}}">{{ name }}</a></li>
+        {{/each}}
+      </ul>
+    </div>
+  </div>
+
+</template>
