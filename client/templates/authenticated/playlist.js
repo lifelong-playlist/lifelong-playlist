@@ -18,34 +18,31 @@ Template.playlist.events({
     'click #search-btn': function(event){
         event.preventDefault();
         var query = $('#search-value').val();
-        console.log(query);
         findMusic(query);
     },
     'keypress input.form-control': function(event) {
         if (event.which === 13) {
             event.preventDefault();
             var query = event.currentTarget.value;
-            console.log(query);
             findMusic(query);
-
         }
     },
     'click #search-results a': function(event) {
         event.preventDefault();
-        //insert SC widget
         $('#player').empty();
-        SC.oEmbed(event.currentTarget.href, { auto_play: true }).then(function(oEmbed) {
-            $('#player').append(oEmbed.html);
-        });
+        var embedPlayer = function embedPlayer(trackUrl) {
+            SC.oEmbed(trackUrl, {auto_play: true}).then(function (oEmbed) {
+                $('#player').append(oEmbed.html);
+            });
+        };
+
+        //insert SoundCloud widget
+        embedPlayer(event.currentTarget.href);
     }
 });
 
 Template.playlist.helpers({
   getPlayList:function(){
-
         return PlayList.findOne();
-
-
-
   }
 });
