@@ -3,10 +3,14 @@
   <div class="row">
     <div class='col-md-12'>
 
-        {{#with getPlayList}}
-          <h3>{{ name }}</h3>
-          <p>{{ description }}</p>
-        {{/with}}
+          {{#if getPlayList}}
+            <h3>Your Lifelong Playlist</h3>
+            <h3>{{ getPlayList.name }}</h3>
+            <p>{{ getPlayList.description }}</p>
+          {{else}}
+            <a>Please create your first playlist</a>
+            {{> new_playlist}}
+          {{/if}}
       
     </div>
 
@@ -29,4 +33,5 @@
     </div>
   </div><!-- /.col-lg-6 -->
 </div><!-- /.row -->
+  </div>
 </template>

@@ -1,0 +1,14 @@
+<template name="playlists">
+
+  <div class="row">
+    <div class='col-md-12'>
+      showing top soundcloud playlists.
+
+        {{#with getPlayLists}}
+          <h3>{{ name }}</h3>
+          <p>{{ description }}</p>
+        {{/with}}
+      
+    </div>
+  </div><!-- /.row -->
+</template>
