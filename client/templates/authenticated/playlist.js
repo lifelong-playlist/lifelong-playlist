@@ -117,10 +117,10 @@ Template.playlist.helpers({
 });
 
 
-Meteor.methods({
-    'add_track': function(t){
-        Tracks.insert(t);
-        console.log("===> inserted", Tracks.findOne(t));
-    }
-});
+// Meteor.methods({
+//     'add_track': function(t){
+//         Tracks.insert(t);
+//         console.log("===> inserted", Tracks.findOne(t));
+//     }
+// });
 
