@@ -51,10 +51,16 @@ Template.index.events({
     Session.set("playing", !playing);
   },
   'click .btn-add-track':function (e,template) {
+    console.log("====> THIS : ", this);
+    var currentPlaylist = PlayList.findOne({owner: Meteor.userId()});
+    var playlistId = currentPlaylist._id;
     var t  = {
       soundcloud_id: this.id,
+      artwork: this.artwork_url,
+      title: this.title,
+      playlist_id: playlistId,
+      uri: this.uri,
       owner:Meteor.userId(),
-      playlist_id:0,
       score:0
     };
 
@@ -102,4 +108,12 @@ Template.index.helpers({
   playlists:function(){
     return PlayList.find().fetch();
   }
-})
+});
+
+
+Meteor.methods({
+    'add_track': function(t){
+        Tracks.insert(t);
+        console.log("===> inserted", Tracks.findOne(t));
+    }
+});
