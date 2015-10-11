@@ -3,21 +3,17 @@
   <div class="row">
     <div class='col-md-12'>
         <audio controls="" id="player" src="{{ current_track }}"></audio>
-      {{#with getPlayList}}
-          <h3>{{ name }}</h3>
-          <p>{{ description }}</p>
-      {{/with}}
     </div>
 
 
-    <div class="col-md-6">
-      <ul id="search-results" class="list-group">
+    <div class="col-md-12">
+      <ul class="list-group">
         {{#each tracks_in_playlist}}
         <li class="list-group-item">
           <div class="media">
             <div class="media-left">
               <a href="#">
-                <img class="media-object" src="{{current_album_art artwork}}" alt="{{title}}" height=64>
+                <img class="media-object" src="{{current_album_art artwork}}" alt="{{title}}" height=30>
               </a>
             </div>
             <div class="media-body">

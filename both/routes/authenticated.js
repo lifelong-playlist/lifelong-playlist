@@ -12,16 +12,11 @@ const authenticatedRoutes = FlowRouter.group({
 authenticatedRoutes.route( '/', {
   name: 'index',
   action() {
+    Meteor.subscribe('playlist-tracks');
     BlazeLayout.render( 'default', { yield: 'index' } );
   }
 });
 
-authenticatedRoutes.route( '/dashboard', {
-  name: 'dashboard',
-  action() {
-    BlazeLayout.render( 'default', { yield: 'dashboard' } );
-  }
-});
 
 authenticatedRoutes.route( '/playlist', {
   name: 'playlist',
@@ -39,13 +34,6 @@ authenticatedRoutes.route( '/playlists', {
   }
 });
 
-authenticatedRoutes.route( '/playlists/new', {
-  name: 'new_playlist',
-  action() {
-    Meteor.subscribe('playlists');
-    BlazeLayout.render( 'default', { yield: 'new_playlist' } );
-  }
-});
 
 authenticatedRoutes.route( '/playlist/:id', {
   name: 'playlist',

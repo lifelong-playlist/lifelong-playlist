@@ -1,27 +1,7 @@
 <template name="index">
-  {{#if playlists}}
-  <h2>My Playlists</h2>
-  <div class="list-group">
-    {{#each playlists}}
-    <li class="list-group-item">
-      <span class="pull-right">
-
-        <button type="button" class="btn btn-sm btn-danger btn-delete-playlist"><i class="glyphicon glyphicon-trash"></i></button>
-      </span>
-      <a href="/playlist/{{_id}}">{{ name }}</a>
-      <span class="clearfix"></span>
-    </li>
-
-
-
-
-    {{/each}}
-  </div>
-  {{else}}
-  <div class="jumbotron text-center" style="padding: 20px;">
-	{{> new_playlist }}
-  </div>
-  {{/if}}
+    <div class="jumbotron text-center" style="padding: 20px;">
+        {{> playlist }}
+    </div>
 
 
 

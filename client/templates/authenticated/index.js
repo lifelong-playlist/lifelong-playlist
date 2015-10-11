@@ -35,12 +35,12 @@ Template.index.events({
   },
   'click .btn-play': function(e, template) {
     e.preventDefault();
-    Session.set("current_track_id", this.id);
-    Session.set("current_track", this.permalink_url);
+    Session.set("current_track_id", this._id);
+    Session.set("current_track", this.uri);
 
     var playing = Session.get("playing");
 
-    var player = template.find('#player' + this.id);
+    var player = template.find('#player');
     console.log(this);
     if (!playing) {
       player.play();
@@ -51,20 +51,16 @@ Template.index.events({
     Session.set("playing", !playing);
   },
   'click .btn-add-track':function (e,template) {
-    console.log("====> THIS : ", this);
-    var currentPlaylist = PlayList.findOne({owner: Meteor.userId()});
-    var playlistId = currentPlaylist._id;
     var t  = {
       soundcloud_id: this.id,
       artwork: this.artwork_url,
       title: this.title,
-      playlist_id: playlistId,
       uri: this.uri,
       owner:Meteor.userId(),
       score:0
     };
 
-    Meteor.call("add_track",t);
+    Meteor.call("new_track",t);
 
     Bert.alert("Track: " + this.title  + " added to your playlist.");
   },
@@ -80,13 +76,6 @@ Template.index.events({
 
 
 Template.index.helpers({
-  isCurrentTrack: function(id) {
-    var current_track = Session.get("current_track");
-    return (current_track === id) ? true : false;
-  },
-  getPlayList: function() {
-    return PlayList.findOne();
-  },
   tracks: function() {
     return Session.get("tracks");
   },
@@ -104,16 +93,5 @@ Template.index.helpers({
   },
   current_album_art:function(url){
     return url || "/default_cover.jpg";
-  },
-  playlists:function(){
-    return PlayList.find().fetch();
   }
-});
-
-
-Meteor.methods({
-    'add_track': function(t){
-        Tracks.insert(t);
-        console.log("===> inserted", Tracks.findOne(t));
-    }
 });

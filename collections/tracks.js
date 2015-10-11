@@ -25,10 +25,6 @@ let TracksSchema = new SimpleSchema({
     type:String,
     label:"Album title"
   },
-  "playlist_id":{
-    type:String,
-    label:"Playlist id"
-  },
   "uri":{
     type:String,
     label:"SoundCloud uri"

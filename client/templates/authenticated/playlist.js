@@ -29,29 +29,6 @@ Template.playlist.events({
       findMusic(query);
     }
   },
-
-  'click .btn-play': function(e, template) {
-    e.preventDefault();
-    Session.set("current_track_id", this._id);
-    Meteor.call("update_score",this._id);
-    Session.set("current_track", this.uri);
-
-    var playing = Session.get("playing");
-
-    var player = template.find('#player');
-
-    var btn = $(e.currentTarget);
-    $('li').removeClass('active');
-    btn.parents('li').addClass('active');
-
-    if (!playing) {
-      player.play();
-    } else {
-      player.pause();
-
-    }
-    Session.set("playing", !playing);
-  },
   'click .btn-add-track':function (e,template) {
     var t  = {
       soundcloud_id: this.id,
@@ -59,7 +36,6 @@ Template.playlist.events({
       title: this.title,
       uri:this.uri,
       owner:Meteor.userId(),
-      playlist_id:Session.get("current_playlist"),
       score:0
     };
     $(e.currentTarget).addClass('disabled');
@@ -90,7 +66,7 @@ Template.playlist.helpers({
     return Session.get("tracks");
   },
   tracks_in_playlist:function(){
-    return Tracks.find({playlist_id:Session.get("current_playlist")},{sort:{score:-1}}).fetch();
+    return Tracks.find({owner:Meteor.userId()},{sort:{score:-1}}).fetch();
   },
   button_state: function(id) {
     var playing = Session.get("playing");
@@ -110,8 +86,15 @@ Template.playlist.helpers({
   },
   getPlayList:function(){
       var currentUser = Meteor.userId();
-      var PL = PlayList.findOne({owner: currentUser});
-      return PL;
+      var playlist = PlayList.findOne({owner: currentUser});
+      console.log('currentUser ' + currentUser + ' playlist ' + playlist);
+      if (typeof playlist === 'undefined') {
+        var newPlaylist = {
+          owner: currentUser
+        };
+        Meteor.call('new_playlist',newPlaylist);
+      }
+      return playlist;
 
   }
 });
