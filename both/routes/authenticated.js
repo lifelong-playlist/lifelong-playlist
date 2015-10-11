@@ -36,7 +36,9 @@ authenticatedRoutes.route( '/playlists/new', {
 authenticatedRoutes.route( '/playlist/:id', {
   name: 'playlist',
   action(params) {
+    Session.set("current_playlist",params.id);
     Meteor.subscribe('playlist',params.id);
+    Meteor.subscribe('playlist-tracks',params.id);
     BlazeLayout.render( 'default', { yield: 'playlist' ,content:'currentPlayList'} );
   }
 });

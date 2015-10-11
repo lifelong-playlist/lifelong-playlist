@@ -3,30 +3,80 @@
   <div class="row">
     <div class='col-md-12'>
 
-        {{#with getPlayList}}
-          <h3>{{ name }}</h3>
-          <p>{{ description }}</p>
-        {{/with}}
-      
+      {{#with getPlayList}}
+      <h3>{{ name }}</h3>
+      <p>{{ description }}</p>
+      {{/with}}
+      <audio controls="" id="player" src="{{ current_track }}" ></audio>
     </div>
 
-  <div class="col-md-6">
-    <div id="player"></div>
-    <form>
-      <div class="form-group">
-        <div class="input-group">
-          <input id='search-value' type="text" class="form-control" placeholder="Search for...">
-          <span class="input-group-btn">
-            <button id='search-btn' class="btn btn-default" type="button">Search</button>
-          </span>
-        </div><!-- /input-group -->
-      </div>
-    </form>
-    <div id="search-results">
-        <ul>
+    <div class="col-md-6">
+      <ul id="search-results" class="list-group">
+        {{#each tracks_in_playlist}}
+        <li class="list-group-item">
+          <div class="media">
+            <div class="media-left">
+              <a href="#">
+                <img class="media-object" src="{{current_album_art artwork}}" alt="{{title}}" height=64>
+              </a>
+            </div>
+            <div class="media-body">
+              <span class="pull-right">
+                <button type="button" class="btn btn-sm btn-info btn-play"><i class="glyphicon glyphicon-{{button_state _id}}"></i></button>
+                <button type="button" class="btn btn-sm btn-danger btn-delete-track"><i class="glyphicon glyphicon-trash"></i></button>
+              </span>
+              <h4 class="media-heading">{{title}}</h4>
 
-        </ul>
+              <span class="clearfix"></span>
+              <!-- <audio id="player{{_id}}" controls="controls" src="{{ getSource uri }}"></audio> -->
+            </div>
+          </div>
+
+        </li>
+        {{/each}}
+      </ul>
+
     </div>
-  </div><!-- /.col-lg-6 -->
-</div><!-- /.row -->
+    <!-- /.col-lg-6 -->
+    <div class="col-md-6">
+      <form>
+        <div class="form-group">
+          <div class="input-group">
+            <input id='search-value' type="text" class="form-control" placeholder="Search for...">
+            <span class="input-group-btn">
+              <button id='search-btn' class="btn btn-default" type="button">Search</button>
+            </span>
+          </div>
+          <!-- /input-group -->
+        </div>
+      </form>
+      <ul id="search-results" class="list-group">
+        {{#each tracks}}
+        <li class="list-group-item">
+          <div class="media">
+            <div class="media-left">
+              <a href="#">
+                <img class="media-object" src="{{current_album_art artwork_url}}" alt="{{title}}" height="32">
+              </a>
+            </div>
+            <div class="media-body">
+              <span class="pull-right">
+                <!-- <button type="button" class="btn btn-xs btn-info btn-play"><i class="glyphicon glyphicon-{{button_state id}}"></i></button> -->
+                <button type="button" class="btn btn-xs btn-success btn-add-track" title="Add to Playlist"><i class="glyphicon glyphicon-plus"></i></button>
+              </span>
+              <p>{{title}}</p>
+
+              <span class="clearfix"></span>
+              <audio class="hidden" id="player{{id}}" controls="controls" src="{{ getSource uri }}"></audio>
+            </div>
+          </div>
+
+        </li>
+        {{/each}}
+      </ul>
+
+
+    </div>
+  </div>
+  <!-- /.row -->
 </template>

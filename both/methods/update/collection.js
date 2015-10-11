@@ -10,5 +10,17 @@ Meteor.methods({
     } catch( exception ) {
       return exception;
     }
+  },
+
+  update_score(id){
+    check(id,String);
+    try{
+      var documentId = Tracks.update({_id:id},{
+        $inc:{ score: 1}
+      });
+      return documentId;
+    }catch(exception){
+      return exception;
+    }
   }
 });
