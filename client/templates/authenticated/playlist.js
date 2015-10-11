@@ -105,9 +105,9 @@ Template.playlist.helpers({
 
     return uri + "/stream?client_id=9d89feee299c63a4528347005516a1a8";
   },
-  current_album_art:function(url){
-    return url || "/default_cover.jpg";
-
+  current_album_art:function(url) {
+      return url || "/default_cover.jpg";
+  },
   getPlayList:function(){
       var currentUser = Meteor.userId();
       var PL = PlayList.findOne({owner: currentUser});
