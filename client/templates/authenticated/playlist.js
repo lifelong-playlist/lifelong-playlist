@@ -1,9 +1,12 @@
+
+
+Meteor.loginWithSoundcloud();
+
+
 Template.playlist.helpers({
-  getPlayList:function(){
-
-        return PlayList.findOne();
-
-
-
-  }
+  getPlayList:function() {
+  		var currentUser = Meteor.userId();
+  		var PL = PlayList.findOne({owner: currentUser});
+        return PL;
+        }
 });

@@ -23,6 +23,21 @@ authenticatedRoutes.route( '/dashboard', {
   }
 });
 
+authenticatedRoutes.route( '/playlist', {
+  name: 'playlist',
+  action() {
+    Meteor.subscribe('playlists');
+    BlazeLayout.render( 'default', { yield: 'playlist' } );
+  }
+});
+
+authenticatedRoutes.route( '/playlists', {
+  name: 'playlists',
+  action() {
+    Meteor.subscribe('playlists');
+    BlazeLayout.render( 'default', { yield: 'playlists' } );
+  }
+});
 
 authenticatedRoutes.route( '/playlists/new', {
   name: 'new_playlist',
@@ -32,11 +47,11 @@ authenticatedRoutes.route( '/playlists/new', {
   }
 });
 
-
 authenticatedRoutes.route( '/playlist/:id', {
   name: 'playlist',
   action(params) {
     Meteor.subscribe('playlist',params.id);
-    BlazeLayout.render( 'default', { yield: 'playlist' ,content:'currentPlayList'} );
+    BlazeLayout.render( 'default', { yield: 'playlist' ,content:'currentPlayList'});
   }
 });
+
