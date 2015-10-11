@@ -2,7 +2,8 @@ var displayResults = function displayResults(tracks) {
     var resultsList = $('#search-results').children('ul');
     resultsList.empty();
     for (track of tracks) {
-        resultsList.append($('<li>').text(track.title));
+        var $a = $('<a>').attr('href',track.permalink_url).text(track.title);
+        resultsList.append($('<li>').html($a));
     }
 };
 var findMusic = function findMusic(query) {
@@ -28,6 +29,14 @@ Template.playlist.events({
             findMusic(query);
 
         }
+    },
+    'click #search-results a': function(event) {
+        event.preventDefault();
+        //insert SC widget
+        $('#player').empty();
+        SC.oEmbed(event.currentTarget.href, { auto_play: true }).then(function(oEmbed) {
+            $('#player').append(oEmbed.html);
+        });
     }
 });
 
