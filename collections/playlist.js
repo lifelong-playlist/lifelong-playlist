@@ -28,7 +28,32 @@ let PlayListSchema = new SimpleSchema({
   "owner": {
     type: String,
     label: "The ID of the owner of this document."
+  },
+  "rank": {
+    type: Number,
+    label: "global rank of this playlist",
+    min: 0
   }
 });
 
 PlayList.attachSchema( PlayListSchema );
+
+// fixture for default data
+
+// var plFixture = {
+//   name: "Lifelong",
+//   description: "Life time playlist",
+//   default: true,
+//   owner: "lifelong",
+//   rank: 0
+// }
+
+// var List = PlayList.findOne({"owner": "lifelong"});
+
+// if (Meteor.isServer){
+//   if(!List) {
+//       PlayList.insert(plFixture);
+//     console.log('Inserted Fixture');
+//   }
+// }
+

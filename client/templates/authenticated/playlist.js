@@ -80,13 +80,12 @@ Template.playlist.events({
 });
 
 Template.playlist.helpers({
+
   isCurrentTrack: function(id) {
     var current_track = Session.get("current_track");
     return (current_track === id) ? true : false;
   },
-  getPlayList: function() {
-    return PlayList.findOne();
-  },
+
   tracks: function() {
     return Session.get("tracks");
   },
@@ -108,5 +107,11 @@ Template.playlist.helpers({
   },
   current_album_art:function(url){
     return url || "/default_cover.jpg";
+
+  getPlayList:function(){
+      var currentUser = Meteor.userId();
+      var PL = PlayList.findOne({owner: currentUser});
+      return PL;
+
   }
 });

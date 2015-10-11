@@ -12,6 +12,7 @@ Template.new_playlist.events({
     pl.description = $('#txtDescription').val();
     pl.default = $('#chkDefault').prop('checked');
     pl.owner = Meteor.userId();
+    pl.rank = 0;
     Meteor.call('new_playlist',pl);
     Bert.alert( 'New PlayList: ' + pl.name + ' created.', 'success' );
 

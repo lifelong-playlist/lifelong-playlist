@@ -3,11 +3,12 @@
   <div class="row">
     <div class='col-md-12'>
 
+
       {{#with getPlayList}}
       <h3>{{ name }}</h3>
       <p>{{ description }}</p>
       {{/with}}
-      <audio controls="" id="player" src="{{ current_track }}" ></audio>
+      <audio controls="" id="player" src="{{ current_track }}"></audio>
     </div>
 
     <div class="col-md-6">
@@ -77,6 +78,8 @@
 
 
     </div>
+
   </div>
   <!-- /.row -->
+
 </template>
