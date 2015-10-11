@@ -1,6 +1,68 @@
 <template name="index">
+  {{#if playlists}}
+  <h2>My Playlists</h2>
+  <div class="list-group">
+    {{#each playlists}}
+    <li class="list-group-item">
+      <span class="pull-right">
+
+        <button type="button" class="btn btn-sm btn-danger btn-delete-playlist"><i class="glyphicon glyphicon-trash"></i></button>
+      </span>
+      <a href="/playlist/{{_id}}">{{ name }}</a>
+      <span class="clearfix"></span>
+    </li>
+
+
+
+
+    {{/each}}
+  </div>
+  {{else}}
   <div class="jumbotron text-center" style="padding: 20px;">
 	{{> playlist }}
   </div>
+  {{/if}}
+
+
+
+  <div class="col-md-8">
+
+    <form>
+      <div class="form-group">
+        <div class="input-group">
+          <input id='search-value' type="text" class="form-control" placeholder="Search for...">
+          <span class="input-group-btn">
+            <button id='search-btn' class="btn btn-default" type="button">Search</button>
+          </span>
+        </div>
+        <!-- /input-group -->
+      </div>
+    </form>
+    <ul id="search-results" class="list-group">
+      {{#each tracks}}
+      <li class="list-group-item">
+        <div class="media">
+          <div class="media-left">
+            <a href="#">
+              <img class="media-object" src="{{current_album_art artwork_url}}" alt="{{title}}" height="64">
+            </a>
+          </div>
+          <div class="media-body">
+            <span class="pull-right">
+              <button type="button" class="btn btn-sm btn-info btn-play"><i class="glyphicon glyphicon-{{button_state id}}"></i></button>
+              <button type="button" class="btn btn-sm btn-success btn-add-track" title="Add to Playlist"><i class="glyphicon glyphicon-plus"></i></button>
+            </span>
+            <h4 class="media-heading">{{title}}</h4>
+
+            <span class="clearfix"></span>
+            <audio id="player{{id}}" controls="controls" src="{{ getSource uri }}"></audio>
+          </div>
+        </div>
+
+      </li>
+      {{/each}}
+    </ul>
+  </div>
+
 
 </template>
