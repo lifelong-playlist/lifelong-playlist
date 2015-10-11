@@ -2,13 +2,11 @@
 
   <div class="row">
     <div class='col-md-12'>
-
-
+        <audio controls="" id="player" src="{{ current_track }}"></audio>
       {{#with getPlayList}}
-      <h3>{{ name }}</h3>
-      <p>{{ description }}</p>
+          <h3>{{ name }}</h3>
+          <p>{{ description }}</p>
       {{/with}}
-      <audio controls="" id="player" src="{{ current_track }}"></audio>
     </div>
 
 
@@ -37,51 +35,7 @@
         </li>
         {{/each}}
       </ul>
-
-
-
-    <!-- /.col-lg-6 -->
-    <div class="col-md-6">
-      <form>
-        <div class="form-group">
-          <div class="input-group">
-            <input id='search-value' type="text" class="form-control" placeholder="Search for...">
-            <span class="input-group-btn">
-              <button id='search-btn' class="btn btn-default" type="button">Search</button>
-            </span>
-          </div>
-          <!-- /input-group -->
-        </div>
-      </form>
-      <ul id="search-results" class="list-group">
-        {{#each tracks}}
-        <li class="list-group-item">
-          <div class="media">
-            <div class="media-left">
-              <a href="#">
-                <img class="media-object" src="{{current_album_art artwork_url}}" alt="{{title}}" height="32">
-              </a>
-            </div>
-            <div class="media-body">
-              <span class="pull-right">
-                <!-- <button type="button" class="btn btn-xs btn-info btn-play"><i class="glyphicon glyphicon-{{button_state id}}"></i></button> -->
-                <button type="button" class="btn btn-xs btn-success btn-add-track" title="Add to Playlist"><i class="glyphicon glyphicon-plus"></i></button>
-              </span>
-              <p>{{title}}</p>
-
-              <span class="clearfix"></span>
-              <audio class="hidden" id="player{{id}}" controls="controls" src="{{ getSource uri }}"></audio>
-            </div>
-          </div>
-
-        </li>
-        {{/each}}
-      </ul>
-
-
     </div>
-
-  </div>
   <!-- /.row -->
-</div>
+  </div>
 </template>
